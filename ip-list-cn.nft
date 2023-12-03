@@ -1,4 +1,4 @@
-define ip-list-cn = {
+define ip_list_cn = {
     1.0.1.0/24,
     1.0.2.0/23,
     1.0.8.0/21,

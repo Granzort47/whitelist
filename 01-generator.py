@@ -112,7 +112,8 @@ def convert_list_to_singbox_ruleset(input: list, output, type):
 
 def convert_list_to_nft(input: list, output):
     with open(output, 'w', newline='\n') as file:
-        file.write(f'define {output.split(".")[0]} ')
+        name = output.replace('-', '_').split('.')[0]
+        file.write(f'define {name} ')
         file.write('= {\n')
         for idx, content in enumerate(input):
             if idx < len(input)-1:
