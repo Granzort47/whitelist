@@ -67,7 +67,7 @@ def convert_txt_to_nft(txt):
 
     # Prepare the nft format content
     text = f'define {txt.split(".")[0]}' + ' = {\n    ' + text
-    text = text + '\n}'
+    text = text + '\n}\n'
 
     # Write the nft format content to the output file
     with open(f'{txt.split(".")[0]}.nft', 'w', newline='\n') as file:
