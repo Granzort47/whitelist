@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+        "aaplimg.com",
+        "apple",
+        "apple.co",
+        "apple.com",
+        "apple.com.cn",
+        "apple-dns.cn",
+        "apple-dns.net",
+        "apple-mapkit.com",
+        "apple.news",
+        "cdn-apple.com",
+        "mzstatic.com"
+      ]
+    }
+  ]
+}

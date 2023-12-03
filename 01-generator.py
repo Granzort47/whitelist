@@ -1,16 +1,52 @@
 import requests
 from bs4 import BeautifulSoup
 
-valve_as_number = '32590'
-china_ip_list_url = 'https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt'
 
+def get_primary_domains(path):
 
-def get_bgp_prefixes(as_number):
-    url = f'https://bgp.he.net/AS{as_number}'
+    url = f'https://www.netify.ai/resources/applications/{path}'
 
     try:
         # Send a GET request to the URL
-        response = requests.get(url)
+        response = requests.get(url, headers={
+                                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'})
+
+        # Check if the request was successful (status code 200)
+        if response.status_code == 200:
+            # Parse the HTML content
+            soup = BeautifulSoup(response.text, 'html.parser')
+
+            # Modify the code below based on the HTML structure of the website
+            primary_domains = []
+
+            # Assuming the primary domains are listed in a specific HTML element
+            # For example, if they are in <div class="primary-domains">...</div>
+            primary_domains_element = soup.find(
+                'ul', {'class': 'default-ul indent-2'})
+
+            if primary_domains_element:
+                # Extract primary domains from the element
+                primary_domains = [
+                    domain.text.strip() for domain in primary_domains_element.find_all('li')]
+
+            return primary_domains
+
+        else:
+            print(
+                f"Error: Unable to fetch content. Status code: {response.status_code}")
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
+
+def get_bgp_prefixes(as_number):
+    url = f'https://bgp.he.net/{as_number}'
+
+    try:
+        # Send a GET request to the URL
+        response = requests.get(url, headers={
+                                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'})
 
         # Check if the request was successful (status code 200)
         if response.status_code == 200:
@@ -34,78 +70,84 @@ def get_bgp_prefixes(as_number):
         print(f"Error: {e}")
 
 
-def get_txt(url, output_file):
+def get_txt(url):
     try:
         # Send a GET request to the URL
-        response = requests.get(url)
+        response = requests.get(url, headers={
+                                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'})
 
         # Check if the request was successful (status code 200)
         if response.status_code == 200:
-            # Open a file in binary write mode and write the content
-            with open(output_file, 'wb') as file:
-                file.write(response.content)
-            print(f"Download successful. Content saved to {output_file}")
+            # Split the content into a list of lines
+            ip_list = response.text.splitlines()
+
+            return ip_list
         else:
             print(
                 f"Error: Unable to download content. Status code: {response.status_code}")
+            return None
+
     except Exception as e:
         print(f"Error: {e}")
+        return None
 
 
-def convert_txt_to_nft(txt):
-    # Read the content from the input text file
-    with open(txt, 'r') as file:
-        text = file.read()
-
-    # Perform necessary text transformations
-    # Replace newlines with commas and indentation
-    text = text.replace('\n', ',\n    ')
-    text = text.strip()  # Remove leading and trailing whitespaces
-    text = text.strip('\n')  # Remove trailing newline characters
-    text = text.strip(',')  # Remove trailing commas
-
-    # Prepare the nft format content
-    text = f'define {txt.split(".")[0]}' + ' = {\n    ' + text
-    text = text + '\n}\n'
-
-    # Write the nft format content to the output file
-    with open(f'{txt.split(".")[0]}.nft', 'w', newline='\n') as file:
-        file.write(text)
-
-
-def convert_txt_to_ip_list(txt):
-    # Read the content from the input text file
-    with open(txt, 'r') as file:
-        lines = file.readlines()
-
-    with open(f'{txt.split(".")[0]}.json', 'w', newline='\n') as file:
+def convert_list_to_singbox_ruleset(input: list, output, type):
+    with open(output, 'w', newline='\n') as file:
         file.write('{\n')
         file.write('  "version": 1,\n')
         file.write('  "rules": [\n')
         file.write('    {\n')
-        file.write('      "ip_cidr": [\n')
-
-        for idx, line in enumerate(lines):
-            if idx < len(lines)-1:
-                file.write(f'        "{line[:-1]}",\n')
+        file.write(f'      "{type}": [\n')
+        for idx, content in enumerate(input):
+            if idx < len(input)-1:
+                file.write(f'        "{content}",\n')
             else:
-                file.write(f'        "{line[:-1]}"\n')
+                file.write(f'        "{content}"\n')
         file.write('      ]\n')
         file.write('    }\n')
         file.write('  ]\n')
         file.write('}')
 
 
-if __name__ == "__main__":
-    prefixes = get_bgp_prefixes(valve_as_number)
-    if prefixes:
-        print(f"Download successful. Content saved to ip_list_valve.txt")
-        with open('ip_list_valve.txt', 'w', newline='\n') as file:
-            for prefix in prefixes:
-                file.write(prefix + '\n')
-        convert_txt_to_nft('ip_list_valve.txt')
-        convert_txt_to_ip_list('ip_list_valve.txt')
+def convert_list_to_nft(input: list, output):
+    with open(output, 'w', newline='\n') as file:
+        file.write(f'define {output.split(".")[0]} ')
+        file.write('= {\n')
+        for idx, content in enumerate(input):
+            if idx < len(input)-1:
+                file.write(f'    {content},\n')
+            else:
+                file.write(f'    {content}\n')
+        file.write('}\n')
 
-    get_txt(china_ip_list_url, 'ip_list_cn.txt')
-    convert_txt_to_nft('ip_list_cn.txt')
-    convert_txt_to_ip_list('ip_list_cn.txt')
+
+if __name__ == "__main__":
+    # generate domain whitelist
+    applications = ['microsoft', 'office-365', 'teams',
+                    'outlook', 'apple', 'apple-icloud', 'plex', 'steam']
+    for application in applications:
+        domains = get_primary_domains(application)
+        if domains:
+            print(f"Download successful: {application}")
+            convert_list_to_singbox_ruleset(
+                domains, f'domain-list-{application}.json', 'domain_suffix')
+
+    # generate ip whitelist
+    as_numbers = ['as32590']
+    for as_number in as_numbers:
+        prefixes = get_bgp_prefixes(as_number)
+        if prefixes:
+            print(f"Download successful: {as_number}")
+            convert_list_to_singbox_ruleset(
+                prefixes, f'ip-list-{as_number}.json', 'ip_cidr')
+            convert_list_to_nft(prefixes, f'ip-list-{as_number}.nft')
+
+    # generate ip list: cn
+    china_ip_list_url = 'https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt'
+    ip_list = get_txt(china_ip_list_url)
+    if ip_list:
+        print(f"Download successful: china_ip_list")
+        convert_list_to_singbox_ruleset(
+            ip_list, 'ip-list-cn.json', 'ip_cidr')
+        convert_list_to_nft(ip_list, 'ip-list-cn.nft')

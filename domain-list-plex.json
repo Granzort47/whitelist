@@ -3,10 +3,10 @@
   "rules": [
     {
       "domain_suffix": [
+        "plexapp.com",
         "plex.bz",
-        "plex.tv",
         "plex.direct",
-        "plexapp.com"
+        "plex.tv"
       ]
     }
   ]

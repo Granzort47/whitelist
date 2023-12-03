@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+        "apple-cloudkit.com",
+        "apple-icloud.cn",
+        "appleicloud.cn",
+        "apple-livephotoskit.com",
+        "apzones.com",
+        "cdn-icloud-content.g.aaplimg.com",
+        "icloud.apple",
+        "icloud-apple.cn",
+        "icloud.ch",
+        "icloud.com",
+        "icloud.com.cn",
+        "icloud-content.com",
+        "icloud.de",
+        "icloud.ee",
+        "icloud.fi",
+        "icloud.fr",
+        "icloud.hu",
+        "icloud.ie",
+        "icloud.is",
+        "icloud.jp",
+        "icloud.lv",
+        "icloud.net.cn",
+        "icloud.om",
+        "icloud.org",
+        "icloud.pt",
+        "icloud.ro",
+        "icloud.se",
+        "icloud.si",
+        "icloud.sk",
+        "icloud.vn"
+      ]
+    }
+  ]
+}
