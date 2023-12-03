@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+        "account.live.com",
+        "account.live-int.com",
+        "activedirectory.windowsazure.com",
+        "authgfx.msa.akadns6.net",
+        "auth.microsoft.com",
+        "client.hip.live.com",
+        "graph.microsoft.com",
+        "graph.windows.net",
+        "logincert.microsoftonline.com",
+        "loginex.microsoftonline.com",
+        "login.live.com",
+        "login.live-int.com",
+        "login.microsoft.com",
+        "login.microsoftonline.com",
+        "login.microsoftonline-p.com",
+        "login-us.microsoftonline.com",
+        "login.windows.net",
+        "microsoftazuread-sso.com",
+        "msagfx.live.com",
+        "msauth.net",
+        "msftauth.net",
+        "msidentity.com",
+        "myaccount.microsoft.com",
+        "mysignins.microsoft.com",
+        "nexus.microsoftonline-p.com",
+        "passport.net",
+        "passwordreset.microsoftonline.com",
+        "signup.live.com"
+      ]
+    }
+  ]
+}

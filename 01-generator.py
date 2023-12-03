@@ -126,7 +126,7 @@ def convert_list_to_nft(input: list, output):
 if __name__ == "__main__":
     # generate domain whitelist
     applications = ['microsoft', 'office-365', 'teams',
-                    'outlook', 'apple', 'apple-icloud', 'plex', 'steam']
+                    'outlook', 'microsoft-authentication', 'windows-update', 'apple', 'apple-icloud', 'plex', 'steam']
     for application in applications:
         domains = get_primary_domains(application)
         if domains:
