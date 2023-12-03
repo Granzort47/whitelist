@@ -1,4 +1,4 @@
-define valve_ip_list = {
+define ip_list_valve = {
     45.121.184.0/24,
     103.10.124.0/24,
     103.10.125.0/24,

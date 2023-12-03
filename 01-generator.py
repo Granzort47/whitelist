@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 
 valve_as_number = '32590'
 china_ip_list_url = 'https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt'
-direct_domain_list_url = 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/direct-list.txt'
 
 
 def get_bgp_prefixes(as_number):
@@ -100,13 +99,13 @@ def convert_txt_to_ip_list(txt):
 if __name__ == "__main__":
     prefixes = get_bgp_prefixes(valve_as_number)
     if prefixes:
-        print(f"Download successful. Content saved to valve_ip_list.txt")
-        with open('valve_ip_list.txt', 'w', newline='\n') as file:
+        print(f"Download successful. Content saved to ip_list_valve.txt")
+        with open('ip_list_valve.txt', 'w', newline='\n') as file:
             for prefix in prefixes:
                 file.write(prefix + '\n')
-        convert_txt_to_nft('valve_ip_list.txt')
-        convert_txt_to_ip_list('valve_ip_list.txt')
+        convert_txt_to_nft('ip_list_valve.txt')
+        convert_txt_to_ip_list('ip_list_valve.txt')
 
-    get_txt(china_ip_list_url, 'china_ip_list.txt')
-    convert_txt_to_nft('china_ip_list.txt')
-    convert_txt_to_ip_list('china_ip_list.txt')
+    get_txt(china_ip_list_url, 'ip_list_cn.txt')
+    convert_txt_to_nft('ip_list_cn.txt')
+    convert_txt_to_ip_list('ip_list_cn.txt')
