@@ -167,20 +167,6 @@ if __name__ == "__main__":
     convert_list_to_singbox_ruleset(
         domains, 'domain-list-apple.json', 'domain_suffix')
 
-    # generate steam domain whitelist
-    domains = []
-    applications = ['steam']
-
-    for application in applications:
-        result = get_primary_domains(application)
-        if result:
-            print(f"Download successful: {application}")
-            domains = domains + result
-
-    domains = remove_subdomains(domains)
-    convert_list_to_singbox_ruleset(
-        domains, 'domain-list-steam.json', 'domain_suffix')
-
     # generate ip whitelist
     as_numbers = ['as32590']
     for as_number in as_numbers:
