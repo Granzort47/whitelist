@@ -3,6 +3,15 @@
   "rules": [
     {
       "domain_suffix": [
+        "itun.es",
+        "itunes.ca",
+        "itunes.co",
+        "itunes.com",
+        "itunes.co.th",
+        "itunes.hk",
+        "itunes.mx",
+        "itunes.org",
+        "itunes.us",
         "aaplimg.com",
         "apple",
         "apple.co",
@@ -13,7 +22,36 @@
         "apple-mapkit.com",
         "apple.news",
         "cdn-apple.com",
-        "mzstatic.com"
+        "mzstatic.com",
+        "apple-cloudkit.com",
+        "apple-icloud.cn",
+        "appleicloud.cn",
+        "apple-livephotoskit.com",
+        "apzones.com",
+        "icloud-apple.cn",
+        "icloud.ch",
+        "icloud.com",
+        "icloud.com.cn",
+        "icloud-content.com",
+        "icloud.de",
+        "icloud.ee",
+        "icloud.fi",
+        "icloud.fr",
+        "icloud.hu",
+        "icloud.ie",
+        "icloud.is",
+        "icloud.jp",
+        "icloud.lv",
+        "icloud.net.cn",
+        "icloud.om",
+        "icloud.org",
+        "icloud.pt",
+        "icloud.ro",
+        "icloud.se",
+        "icloud.si",
+        "icloud.sk",
+        "icloud.vn",
+        "me.com"
       ]
     }
   ]

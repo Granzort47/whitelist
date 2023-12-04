@@ -122,17 +122,52 @@ def convert_list_to_nft(input: list, output):
                 file.write(f'    {content}\n')
         file.write('}\n')
 
+def remove_subdomains(domain_list):
+
+    result = []
+
+    for domain in domain_list:
+        is_subdomain = False
+
+        for other_domain in domain_list:
+            if domain != other_domain and domain.endswith("." + other_domain):
+                is_subdomain = True
+                break
+
+        if not is_subdomain:
+            result.append(domain)
+
+    return result
+
 
 if __name__ == "__main__":
-    # generate domain whitelist
-    applications = ['microsoft', 'office-365', 'teams',
-                    'outlook', 'microsoft-authentication', 'windows-update', 'apple', 'apple-icloud', 'plex', 'steam']
+    # generate microsoft domain whitelist
+    domains = []
+    applications = ['microsoft-ads', 'microsoft', 'microsoft-authentication', 'office-365','sharepoint', 'teams','microsoft-onedrive','microsoft-games',
+                    'outlook','windows',  'windows-update']
+    
     for application in applications:
-        domains = get_primary_domains(application)
-        if domains:
+        result = get_primary_domains(application)
+        if result:
             print(f"Download successful: {application}")
-            convert_list_to_singbox_ruleset(
-                domains, f'domain-list-{application}.json', 'domain_suffix')
+            domains = domains + result
+
+    domains = remove_subdomains(domains)
+    convert_list_to_singbox_ruleset(domains, 'domain-list-microsoft.json', 'domain_suffix')
+
+    # generate apple domain whitelist
+    domains = []
+    applications = ['apple-itunes', 'apple', 'apple-id', 'apple-siri', 'apple-icloud', 'apple-mail', 'apple-push', 'apple-updates', 'apple-tv']
+    
+    for application in applications:
+        result = get_primary_domains(application)
+        if result:
+            print(f"Download successful: {application}")
+            domains = domains + result
+
+    domains = remove_subdomains(domains)
+    convert_list_to_singbox_ruleset(domains, 'domain-list-apple.json', 'domain_suffix')
+            
 
     # generate ip whitelist
     as_numbers = ['as32590']
