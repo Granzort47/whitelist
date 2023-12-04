@@ -8,7 +8,10 @@
         "plex.bz",
         "plex.direct",
         "plex.tv",
-        "zaobao.com"
+        "zaobao.com",
+        "api.steampowered.com",
+        "cm.steampowered.com",
+        "steamserver.net"
       ]
     }
   ]
