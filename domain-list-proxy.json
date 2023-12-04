@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+        "services.googleapis.cn",
+        "onedrive.com",
+        "onedrive.live.com"
+      ]
+    }
+  ]
+}

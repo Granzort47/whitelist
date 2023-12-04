@@ -122,7 +122,6 @@
         "skypeforbusiness.com",
         "teams-dc-msedge.net",
         "teams-msedge.net",
-        "teams.skype.com",
         "1drv.com",
         "1drv.ms",
         "livefilestore.com",
@@ -141,11 +140,15 @@
         "outlook.com",
         "outlook-exo-vnext.trafficma...",
         "outlookmobile.com",
-        "postmaster.msn.com",
         "webmail.apps.mil",
         "windows.com",
         "windows.net",
-        "windowsupdate.com"
+        "windowsupdate.com",
+        "msn.cn",
+        "msn.com",
+        "s-msn.com",
+        "skypeassets.com",
+        "skype.com"
       ]
     }
   ]

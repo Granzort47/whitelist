@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+        "211202.xyz",
+        "plexapp.com",
+        "plex.bz",
+        "plex.direct",
+        "plex.tv",
+        "zaobao.com"
+      ]
+    }
+  ]
+}
