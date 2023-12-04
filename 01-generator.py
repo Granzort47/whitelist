@@ -140,7 +140,7 @@ if __name__ == "__main__":
     # generate microsoft domain whitelist
     domains = []
     applications = ['microsoft-ads', 'microsoft', 'microsoft-authentication', 'office-365', 'sharepoint',
-                    'teams', 'microsoft-onedrive', 'microsoft-games', 'outlook', 'windows',  'windows-update', 'msn', 'skype']
+                    'teams', 'microsoft-onedrive', 'microsoft-games', 'outlook', 'windows',  'windows-update', 'msn', 'skype', 'bing']
 
     for application in applications:
         result = get_primary_domains(application)
