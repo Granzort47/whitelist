@@ -3,6 +3,7 @@
   "rules": [
     {
       "domain_suffix": [
+        "www.gstatic.com",
         "fonts.googleapis.com",
         "services.googleapis.cn",
         "onedrive.com",
